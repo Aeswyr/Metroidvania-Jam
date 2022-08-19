@@ -11,12 +11,12 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Entity
+  - World
+  - Hitbox
+  - Hurtbox
+  - Interact
+  - Interactable
   - 
   - 
   - 
@@ -40,4 +40,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2426517993
+    locked: 0
+  - name: World
+    uniqueID: 1804324895
+    locked: 0
+  - name: Entity
+    uniqueID: 3302102235
+    locked: 0
+  - name: Foreground
+    uniqueID: 2807158237
     locked: 0

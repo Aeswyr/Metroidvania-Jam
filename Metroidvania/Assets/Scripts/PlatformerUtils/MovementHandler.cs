@@ -6,17 +6,22 @@ public class MovementHandler : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private Rigidbody2D rbody;
-    [Header("Acceleration Info")]
     [SerializeField] private AnimationCurve accelerationCurve;
-    [SerializeField] private float accelerationTime;
-    [Header("Deceleration Info")]
+    private float accelerationTime;
     [SerializeField] private AnimationCurve decelerationCurve;
-    [SerializeField] private float decelerationTime;
+    private float decelerationTime;
     private float timestamp;
     private float dir;
     private float decelSpeed;
     bool moving = false;
     // Update is called once per frame
+
+
+    void Awake() {
+        accelerationTime = accelerationCurve[accelerationCurve.length - 1].time;
+        decelerationTime = decelerationCurve[decelerationCurve.length - 1].time;
+    }
+
     void FixedUpdate()
     {
         if (Time.time < timestamp) {

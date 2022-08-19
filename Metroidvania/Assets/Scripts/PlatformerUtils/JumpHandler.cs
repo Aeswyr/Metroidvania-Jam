@@ -5,34 +5,46 @@ using UnityEngine;
 public class JumpHandler : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rbody;
-    private InputHandler input;
     [Header("Jump Info")]
     [SerializeField] private float velocityScalar;
-    [SerializeField] private float maxRisingTime, maxTime;
-    [SerializeField] private AnimationCurve curve;
+    [SerializeField] private float terminalVelocity;
+
+    [SerializeField] private AnimationCurve risingCurve;
+    [SerializeField] private AnimationCurve fallingCurve;
     //Extra variables
     private float timeStamp = -100;
     private bool jumping, starting;
+    private AnimationCurve curve;
+    private float risingTime, fallingTime, maxTime;
 
-    public void LinkInputs(InputHandler input) {
-        this.input = input;
+    void Start() {
+        risingTime = risingCurve[risingCurve.length - 1].time;
+        fallingTime = fallingCurve[fallingCurve.length - 1].time;
     }
+
     void FixedUpdate()
     {
-        if (starting && (input.jump.released || Time.time - timeStamp > maxRisingTime))
+        if (starting && (InputHandler.Instance.jump.released || Time.time - timeStamp > risingTime))
             EndJump();
         if (Time.time - timeStamp <= maxTime)     
             rbody.velocity = new Vector2(rbody.velocity.x, velocityScalar * curve.Evaluate(Time.time - timeStamp));
+
+        if (rbody.velocity.y < -terminalVelocity)
+            rbody.velocity = new Vector2(rbody.velocity.x, -terminalVelocity);
     }
 
     public void StartJump() {
         timeStamp = Time.time;
         starting = true;
+        curve = risingCurve;
+        maxTime = risingTime;
     }
 
     private void EndJump() {
-        timeStamp = Time.time - maxRisingTime;
+        timeStamp = Time.time;
         starting = false;
+        curve = fallingCurve;
+        maxTime = fallingTime;
     }
 
     public void ForceLanding() {

@@ -146,38 +146,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rbody: {fileID: 690461484880155008}
   velocityScalar: 20
-  maxRisingTime: 0.1
-  maxTime: 0.2
-  curve:
+  terminalVelocity: 24
+  risingCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: -0.3731383
-      outSlope: -0.3731383
+      inSlope: -0.20701084
+      outSlope: -0.20701084
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.062731
+      outWeight: 0.04552981
     - serializedVersion: 3
-      time: 0.1
-      value: 0.8
-      inSlope: -1.1274046
-      outSlope: -1.1274046
-      tangentMode: 1
+      time: 0.5
+      value: 0
+      inSlope: -4.1835213
+      outSlope: -4.1835213
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0.035595894
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  fallingCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -0.049322017
+      outSlope: -0.049322017
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.34964672
     - serializedVersion: 3
       time: 0.2
-      value: 0
-      inSlope: -8.652989
-      outSlope: -2.60475
-      tangentMode: 1
+      value: -1
+      inSlope: -13.503316
+      outSlope: -13.503316
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0.082781315
-      outWeight: 0.096026585
+      inWeight: 0.07303029
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -219,7 +233,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  accelerationTime: 0.3
   decelerationCurve:
     serializedVersion: 2
     m_Curve:
@@ -244,7 +257,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  decelerationTime: 0.3
 --- !u!114 &4427129322485129353
 MonoBehaviour:
   m_ObjectHideFlags: 0

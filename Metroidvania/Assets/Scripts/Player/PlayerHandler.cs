@@ -16,7 +16,7 @@ public class PlayerHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        jump.LinkInputs(InputHandler.Instance);
+
     }
 
     // Update is called once per frame

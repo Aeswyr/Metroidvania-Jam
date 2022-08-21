@@ -53,7 +53,12 @@ public class MovementHandler : MonoBehaviour
         moving = true;
     }
 
-
+    public void ResetMovement() {
+        moving = false;
+        timestamp = 0;
+        decelSpeed = 0;
+        rbody.velocity = Vector2.zero;
+    }
     
 
 

@@ -11,6 +11,7 @@ public class PlayerHandler : MonoBehaviour
     [SerializeField] private MovementHandler move;
 
     private bool grounded;
+    bool inputsDisabled;
 
 
     // Start is called before the first frame update
@@ -22,9 +23,10 @@ public class PlayerHandler : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        grounded = ground.CheckGrounded();
+        if (inputsDisabled)
+            return;
 
-        
+        grounded = ground.CheckGrounded();
 
         if (InputHandler.Instance.move.pressed)
             move.StartAcceleration(InputHandler.Instance.dir);
@@ -37,8 +39,17 @@ public class PlayerHandler : MonoBehaviour
 
         if (grounded && InputHandler.Instance.jump.pressed)
             jump.StartJump();
-
-
         
+    }
+
+    public void DisableInputs() {
+        move.ResetMovement();
+        inputsDisabled = true;
+    }
+
+    public void EnableInputs() {
+        inputsDisabled = false;
+        if (InputHandler.Instance.move.down && !InputHandler.Instance.move.pressed)
+            move.StartAcceleration(InputHandler.Instance.dir);
     }
 }

@@ -15,6 +15,11 @@ public class GameHandler : Singleton<GameHandler>
     [SerializeField] private GameObject screenWipe;
     
     private LevelHandler currentLevel;
+
+    public void Start() {
+        // TODO make this actually load from level data
+        LoadLevel(default, 0);
+    }
     public void GotoLevel(LevelType levelType, int spawnPointID) {
         StartCoroutine(DelayLoadLevel(levelType, spawnPointID));
     }
@@ -30,6 +35,18 @@ public class GameHandler : Singleton<GameHandler>
 
         yield return new WaitForSeconds(0.5f);
 
+        LoadLevel(levelType, spawnPointID);
+
+        yield return new WaitForSeconds(0.3f);
+
+        wipeanim.SetTrigger("EndWipe");
+        yield return new WaitForSeconds(0.1f);
+        player.EnableInputs();
+        yield return new WaitForSeconds(0.4f);
+        Destroy(wipe);
+    }
+
+    private void LoadLevel(LevelType levelType, int spawnPointID) {
         if (currentLevel != null)
             Destroy(currentLevel.gameObject);
         
@@ -43,15 +60,8 @@ public class GameHandler : Singleton<GameHandler>
 
         Vector3 position = currentLevel.GetSpawn(spawnPointID).GetSpawnPos();
         position.z = 0;
-        player.transform.position = position;
+        FindObjectOfType<PlayerHandler>().transform.position = position;
         position.z = -10;
         vCam.ForceCameraPosition(position, Quaternion.identity);
-        yield return new WaitForSeconds(0.3f);
-
-        wipeanim.SetTrigger("EndWipe");
-        yield return new WaitForSeconds(0.1f);
-        player.EnableInputs();
-        yield return new WaitForSeconds(0.4f);
-        Destroy(wipe);
     }
 }

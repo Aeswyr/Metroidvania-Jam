@@ -36,18 +36,22 @@ public class GameHandler : Singleton<GameHandler>
         GameObject level = levels.GetLevel(levelType);
         level = Instantiate(level, Vector3.zero, Quaternion.identity);
         currentLevel = level.GetComponent<LevelHandler>();
+        
+        var camBounds = vCam.GetComponent<CinemachineConfiner2D>();
+        camBounds.m_BoundingShape2D = currentLevel.GetCameraBounds();
+        camBounds.InvalidateCache();
 
-        wipeanim.SetTrigger("EndWipe");
         Vector3 position = currentLevel.GetSpawn(spawnPointID).GetSpawnPos();
         position.z = 0;
         player.transform.position = position;
         position.z = -10;
         vCam.ForceCameraPosition(position, Quaternion.identity);
-        
+        yield return new WaitForSeconds(0.3f);
 
-        yield return new WaitForSeconds(0.5f);
-
+        wipeanim.SetTrigger("EndWipe");
+        yield return new WaitForSeconds(0.1f);
+        player.EnableInputs();
+        yield return new WaitForSeconds(0.4f);
         Destroy(wipe);
-         player.EnableInputs();
     }
 }

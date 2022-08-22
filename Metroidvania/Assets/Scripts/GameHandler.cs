@@ -13,7 +13,7 @@ public class GameHandler : Singleton<GameHandler>
 
     [Header("VFX")]
     [SerializeField] private GameObject screenWipe;
-    
+
     private LevelHandler currentLevel;
 
     public void Start() {
@@ -49,11 +49,11 @@ public class GameHandler : Singleton<GameHandler>
     private void LoadLevel(LevelType levelType, int spawnPointID) {
         if (currentLevel != null)
             Destroy(currentLevel.gameObject);
-        
+
         GameObject level = levels.GetLevel(levelType);
         level = Instantiate(level, Vector3.zero, Quaternion.identity);
         currentLevel = level.GetComponent<LevelHandler>();
-        
+
         var camBounds = vCam.GetComponent<CinemachineConfiner2D>();
         camBounds.m_BoundingShape2D = currentLevel.GetCameraBounds();
         camBounds.InvalidateCache();
@@ -63,5 +63,7 @@ public class GameHandler : Singleton<GameHandler>
         FindObjectOfType<PlayerHandler>().transform.position = position;
         position.z = -10;
         vCam.ForceCameraPosition(position, Quaternion.identity);
+
+        DataHandler.Instance.gameData.levelIndex = (int)levelType;
     }
 }

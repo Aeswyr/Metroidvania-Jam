@@ -48,7 +48,7 @@ public class DataHandler : Singleton<DataHandler>
             managedObjectIDs.Add(state.dataID);
             managedObjects.Add(state.dataID, state);
         }
-        GameHandler.Instance.DelayLoadLevel((LevelType)levelIndex, spawnIndex);
+        GameHandler.Instance.GotoLevel((LevelType)gameData.levelIndex, gameData.spawnIndex);
     }
 
     public bool hasProperty(string property)

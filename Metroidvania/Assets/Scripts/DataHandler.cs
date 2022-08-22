@@ -27,6 +27,11 @@ public class DataHandler : Singleton<DataHandler>
 
     public GameData gameData;
 
+    void Awake()
+    {
+        DontDestroyOnLoad(this);
+    }
+
     public string Save()
     {
         gameData.objectStates = new List<ObjectState>();

@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: -713917734336395830}
   - component: {fileID: 4846522784069376063}
   - component: {fileID: -6045782475128908280}
+  - component: {fileID: 1558390760830552041}
+  - component: {fileID: 6214754255293481902}
   m_Layer: 0
   m_Name: GameHandler
   m_TagString: Untagged
@@ -219,7 +221,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vCam: {fileID: 0}
   levels: {fileID: 11400000, guid: 00e7105f444115945a35e2cf256ae482, type: 2}
-  screenWipe: {fileID: 4277955011393347199, guid: 78b1440ac38dd794fa3639bf8e1f8759, type: 3}
 --- !u!114 &-6045782475128908280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,3 +237,28 @@ MonoBehaviour:
     levelIndex: 0
     spawnIndex: 0
     playerProperties: []
+--- !u!114 &1558390760830552041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8153788501312524320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b505b4785484fe44db4274751f17ad78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screenWipePrefab: {fileID: 4277955011393347199, guid: 78b1440ac38dd794fa3639bf8e1f8759, type: 3}
+--- !u!114 &6214754255293481902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8153788501312524320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6639392fff902434b852c6e9ad37688e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -10,8 +10,11 @@ public class Interactable : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (!requiresConfirm)
             action.Invoke();
+        else
+            GameHandler.Instance.GetPlayer().RegisterInteraction(action);
     }
     private void OnTriggerExit2D(Collider2D other) {
-        
+        if (requiresConfirm)
+            GameHandler.Instance.GetPlayer().DeregisterInteraction(action);
     }
 }

@@ -11,12 +11,12 @@ public class GameHandler : Singleton<GameHandler>
     [Header("Level data")]
     [SerializeField] private LevelList levels;
 
-    [Header("VFX")]
-    [SerializeField] private GameObject screenWipe;
-
     private LevelHandler currentLevel;
+    private PlayerHandler player;
 
     public void Start() {
+        player = FindObjectOfType<PlayerHandler>();
+
         // TODO make this actually load from level data
         LoadLevel(default, 0);
     }
@@ -25,13 +25,9 @@ public class GameHandler : Singleton<GameHandler>
     }
 
     private IEnumerator DelayLoadLevel(LevelType levelType, int spawnPointID) {
-        PlayerHandler player = FindObjectOfType<PlayerHandler>();
         player.DisableInputs();
 
-        GameObject wipe = Instantiate(screenWipe, Camera.main.transform);
-        wipe.transform.position += new Vector3(0, 0, 10);
-        Animator wipeanim = wipe.GetComponent<Animator>();
-        wipeanim.SetTrigger("StartWipe");
+        VFXHandler.Instance.StartScreenWipe();
 
         yield return new WaitForSeconds(0.5f);
 
@@ -39,11 +35,11 @@ public class GameHandler : Singleton<GameHandler>
 
         yield return new WaitForSeconds(0.3f);
 
-        wipeanim.SetTrigger("EndWipe");
+        VFXHandler.Instance.EndScreenWipe();
+
         yield return new WaitForSeconds(0.1f);
         player.EnableInputs();
-        yield return new WaitForSeconds(0.4f);
-        Destroy(wipe);
+        
     }
 
     private void LoadLevel(LevelType levelType, int spawnPointID) {
@@ -60,10 +56,14 @@ public class GameHandler : Singleton<GameHandler>
 
         Vector3 position = currentLevel.GetSpawn(spawnPointID).GetSpawnPos();
         position.z = 0;
-        FindObjectOfType<PlayerHandler>().transform.position = position;
+        player.transform.position = position;
         position.z = -10;
         vCam.ForceCameraPosition(position, Quaternion.identity);
 
         DataHandler.Instance.gameData.levelIndex = (int)levelType;
+    }
+
+    public PlayerHandler GetPlayer() {
+        return player;
     }
 }

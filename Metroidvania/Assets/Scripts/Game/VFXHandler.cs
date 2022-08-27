@@ -7,6 +7,8 @@ public class VFXHandler : Singleton<VFXHandler>
 
         [SerializeField] private GameObject screenWipePrefab;
         private GameObject screenWipe;
+        [SerializeField] private AnimationClip[] oneShotParticles;
+        [SerializeField] private GameObject genericOneShotPrefab;
 
         public void StartScreenWipe() {
             screenWipe = Instantiate(screenWipePrefab, Camera.main.transform);
@@ -25,4 +27,18 @@ public class VFXHandler : Singleton<VFXHandler>
             screenWipe = null;
         }
 
+        public void PlayOneShotParticle(ParticleType type, Vector3 position, int facing = 1) {
+            GameObject particle = Instantiate(genericOneShotPrefab, position, Quaternion.identity);
+            particle.transform.localScale = new Vector3(facing, 1, 1);
+            Animator animator = particle.GetComponent<Animator>();
+            AnimatorOverrideController animatorOverride = new AnimatorOverrideController(animator.runtimeAnimatorController);
+            animator.runtimeAnimatorController = animatorOverride;
+            animatorOverride["one_shot"] = oneShotParticles[(int)type];
+
+            particle.GetComponent<DestroyAfterDelay>().lifetime = oneShotParticles[(int)type].length;
+        }
+
+        public enum ParticleType {
+            Muzzleflash_1, Detective_Special
+        }
 }

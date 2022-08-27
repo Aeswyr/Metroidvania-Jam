@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DestroyAfterDelay : MonoBehaviour
 {
-    [SerializeField] private float lifetime;
+    public float lifetime;
     
     void Start() {
         lifetime += Time.time;

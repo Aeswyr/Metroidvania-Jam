@@ -32,7 +32,7 @@ public class InputHandler : Singleton<InputHandler>
     }
 
     private ButtonState m_reload;
-    public ButtonState charge {
+    public ButtonState reload {
         get{return m_reload;}
     }
 
@@ -41,9 +41,9 @@ public class InputHandler : Singleton<InputHandler>
         get {return m_attack;}
     }
 
-    private ButtonState m_dash;
-    public ButtonState dash {
-        get {return m_dash;}
+    private ButtonState m_special;
+    public ButtonState special {
+        get {return m_special;}
     }
 
     private ButtonState m_interact;
@@ -60,7 +60,7 @@ public class InputHandler : Singleton<InputHandler>
         this.m_move.Reset();
         this.m_jump.Reset();
         this.m_attack.Reset();
-        this.m_dash.Reset();
+        this.m_special.Reset();
         this.m_interact.Reset();
         this.m_menu.Reset();
         this.m_reload.Reset();
@@ -80,8 +80,8 @@ public class InputHandler : Singleton<InputHandler>
         this.m_attack.Set(ctx);
     }
 
-    public void Dash(InputAction.CallbackContext ctx) {
-        this.m_dash.Set(ctx);
+    public void Special(InputAction.CallbackContext ctx) {
+        this.m_special.Set(ctx);
     }
 
     public void Interact(InputAction.CallbackContext ctx) {

@@ -11,9 +11,11 @@ public class PlayerHandler : MonoBehaviour
     [SerializeField] private JumpHandler jump;
     [SerializeField] private MovementHandler move;
     [SerializeField] private GameObject interactPrompt;
+    [SerializeField] private Animator animator;
 
-    private bool grounded;
+    private bool grounded, acting;
     bool inputsDisabled;
+    private int facing = 1;
 
     private List<UnityEvent> possibleInteractions = new List<UnityEvent>();
 
@@ -30,19 +32,45 @@ public class PlayerHandler : MonoBehaviour
         if (inputsDisabled)
             return;
 
+        bool groundedprev = grounded;
         grounded = ground.CheckGrounded();
+        if (acting && grounded && !groundedprev)
+            EndAction();
+        animator.SetBool("grounded", grounded);
 
-        if (InputHandler.Instance.move.pressed)
+        if (InputHandler.Instance.move.pressed && !acting)
             move.StartAcceleration(InputHandler.Instance.dir);
-        else if (InputHandler.Instance.move.down) {
+        else if (InputHandler.Instance.move.down && !acting) {
             move.UpdateMovement(InputHandler.Instance.dir);
             sprite.flipX = InputHandler.Instance.dir < 0;
-        } else if (InputHandler.Instance.move.released)
+            facing = sprite.flipX ? -1 : 1;
+            animator.SetBool("moving", true);
+        } else if (InputHandler.Instance.move.released && !acting) {
             move.StartDeceleration();
+            animator.SetBool("moving", false);
+        }
 
 
-        if (grounded && InputHandler.Instance.jump.pressed)
+        if (InputHandler.Instance.jump.pressed && !acting && grounded) {
             jump.StartJump();
+            animator.SetBool("grounded", false);
+            animator.SetTrigger("jump");
+        }
+
+        if (InputHandler.Instance.special.pressed && !acting) {
+            animator.SetTrigger("special");
+            StartAction();
+        }
+
+        if (InputHandler.Instance.attack.pressed && !acting) {
+            animator.SetTrigger("attack");
+            StartAction();
+        }
+
+        if (InputHandler.Instance.reload.pressed && !acting && grounded) {
+            animator.SetTrigger("reload");
+        }
+
 
         if (InputHandler.Instance.interact.pressed && possibleInteractions.Count > 0) {
             possibleInteractions[0].Invoke();
@@ -55,12 +83,43 @@ public class PlayerHandler : MonoBehaviour
     public void DisableInputs() {
         move.ResetMovement();
         inputsDisabled = true;
+        animator.SetBool("moving", false);
     }
-
     public void EnableInputs() {
         inputsDisabled = false;
         if (InputHandler.Instance.move.down && !InputHandler.Instance.move.pressed)
             move.StartAcceleration(InputHandler.Instance.dir);
+    }
+    private void StartAction() {
+        if (grounded)
+            move.StartDeceleration();
+        animator.SetBool("moving", false);
+        acting = true;
+    }
+
+    private void EndAction() {
+        acting = false;
+    }
+
+    private void FireAttack() {
+        float dist = 4f;
+        if (grounded)
+            dist = 3.5f;
+        dist *= facing;
+        VFXHandler.Instance.PlayOneShotParticle(VFXHandler.ParticleType.Muzzleflash_1, transform.position + new Vector3(dist, 1f, 0), facing);
+    }
+
+    private void FireSpecial() {
+        float dist = 4f;
+        if (grounded)
+            dist = 3.5f;
+        dist *= facing;
+        VFXHandler.Instance.PlayOneShotParticle(VFXHandler.ParticleType.Muzzleflash_1, transform.position + new Vector3(dist, 1f, 0), facing);
+        VFXHandler.Instance.PlayOneShotParticle(VFXHandler.ParticleType.Detective_Special, transform.position + new Vector3(facing, 1f, 0), facing);
+    }
+
+    private void FireReload() {
+
     }
 
     public void RegisterInteraction(UnityEvent action) {

@@ -54,10 +54,8 @@ public class PlayerHandler : MonoBehaviour
         }
 
         //Character Swap
-        if (InputHandler.Instance.swap.pressed && !acting && InputHandler.Instance.swapDir != 0) {
-            characterIndex = (characterIndex + (int)InputHandler.Instance.swapDir) % characterOverrides.Length;
-            if (characterIndex < 0)
-                characterIndex += characterOverrides.Length;
+        if (InputHandler.Instance.swap.pressed && !acting) {
+            characterIndex = (characterIndex + 1) % characterOverrides.Length;
             animator.runtimeAnimatorController = characterOverrides[characterIndex];
             VFXHandler.Instance.PlayOneShotParticle((VFXHandler.ParticleType)characterIndex, transform.position, facing);
         }
@@ -117,28 +115,54 @@ public class PlayerHandler : MonoBehaviour
     }
 
     private void FireAttack() {
-        float dist = 4f;
-        if (grounded)
-            dist = 3.5f;
-        dist *= facing;
-        VFXHandler.Instance.PlayOneShotParticle(VFXHandler.ParticleType.Muzzleflash_1, transform.position + new Vector3(dist, 1f, 0), facing);
-        
-        CombatHandler.Instance.PlayOneShotParticle(CombatHandler.ProjectileType.Bullet, transform.position + new Vector3(dist, 1f, 0), facing, facing * 125 * Vector2.right);
+        switch(characterIndex)
+        {
+            case 0:
+                DetectiveAttack();
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+        }
     }
 
     private void FireSpecial() {
-        float dist = 4f;
-        if (grounded)
-            dist = 3.5f;
-        dist *= facing;
-        VFXHandler.Instance.PlayOneShotParticle(VFXHandler.ParticleType.Muzzleflash_1, transform.position + new Vector3(dist, 1f, 0), facing);
-        VFXHandler.Instance.PlayOneShotParticle(VFXHandler.ParticleType.Detective_Special, transform.position + new Vector3(facing, 1f, 0), facing);
-
-        CombatHandler.Instance.PlayOneShotParticle(CombatHandler.ProjectileType.Bullet, transform.position + new Vector3(dist, 1f, 0), facing, facing * 125 * Vector2.right);
+        switch(characterIndex)
+        {
+            case 0:
+                DetectiveSpecial();
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+        }
     }
 
     private void FireReload() {
-
+        switch(characterIndex)
+        {
+            case 0:
+                DetectiveReload();
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+        }
     }
 
     public void RegisterInteraction(UnityEvent action) {
@@ -151,5 +175,32 @@ public class PlayerHandler : MonoBehaviour
             possibleInteractions.Remove(action);
             interactPrompt.SetActive(possibleInteractions.Count > 0);
         }
+    }
+
+
+    // Character specific actions
+    private void DetectiveAttack() {
+        float dist = 4f;
+        if (grounded)
+            dist = 3.5f;
+        dist *= facing;
+        VFXHandler.Instance.PlayOneShotParticle(VFXHandler.ParticleType.Muzzleflash_1, transform.position + new Vector3(dist, 1f, 0), facing);
+        
+        CombatHandler.Instance.PlayOneShotParticle(CombatHandler.ProjectileType.Bullet, transform.position + new Vector3(dist, 1f, 0), facing, facing * 125 * Vector2.right);
+    }
+
+    private void DetectiveSpecial() {
+        float dist = 4f;
+        if (grounded)
+            dist = 3.5f;
+        dist *= facing;
+        VFXHandler.Instance.PlayOneShotParticle(VFXHandler.ParticleType.Muzzleflash_1, transform.position + new Vector3(dist, 1f, 0), facing);
+        VFXHandler.Instance.PlayOneShotParticle(VFXHandler.ParticleType.Detective_Special, transform.position + new Vector3(facing, 1f, 0), facing);
+
+        CombatHandler.Instance.PlayOneShotParticle(CombatHandler.ProjectileType.Bullet, transform.position + new Vector3(dist, 1f, 0), facing, facing * 125 * Vector2.right);
+    }
+
+    private void DetectiveReload() {
+        
     }
 }

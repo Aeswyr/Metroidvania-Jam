@@ -26,11 +26,6 @@ public class InputHandler : Singleton<InputHandler>
         get{return m_swap;}
     }
 
-    public float swapDir {
-        get;
-        private set;
-    }
-
     private ButtonState m_reload;
     public ButtonState reload {
         get{return m_reload;}
@@ -94,7 +89,6 @@ public class InputHandler : Singleton<InputHandler>
 
     public void Swap(InputAction.CallbackContext ctx) {
         this.m_swap.Set(ctx);
-        swapDir = ctx.ReadValue<float>();
     }
 
     public void Reload(InputAction.CallbackContext ctx) {

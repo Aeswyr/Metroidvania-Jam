@@ -252,6 +252,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screenWipePrefab: {fileID: 4277955011393347199, guid: 78b1440ac38dd794fa3639bf8e1f8759, type: 3}
   oneShotParticles:
+  - {fileID: 7400000, guid: 45691b474c6080d4e812727ad9070cca, type: 2}
+  - {fileID: 7400000, guid: 45691b474c6080d4e812727ad9070cca, type: 2}
+  - {fileID: 7400000, guid: 45691b474c6080d4e812727ad9070cca, type: 2}
+  - {fileID: 7400000, guid: 45691b474c6080d4e812727ad9070cca, type: 2}
+  - {fileID: 7400000, guid: 45691b474c6080d4e812727ad9070cca, type: 2}
   - {fileID: 7400000, guid: c4cc221246234a040a5194f810445347, type: 2}
   - {fileID: 7400000, guid: be97f6566a488ff48bce4ef83b4eaa73, type: 2}
   genericOneShotPrefab: {fileID: 1146458541564124198, guid: af5de4ce2a5e70046804c26ed1247a4b, type: 3}

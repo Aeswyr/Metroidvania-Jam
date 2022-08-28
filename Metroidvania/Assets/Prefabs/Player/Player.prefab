@@ -151,7 +151,7 @@ Animator:
   m_GameObject: {fileID: 3406059160412907519}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 5859df13d5b7a4940be5ea17ed81e1fc, type: 2}
+  m_Controller: {fileID: 9100000, guid: 788265a959603dc4cb42aeef59d108dd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -344,6 +344,9 @@ MonoBehaviour:
   move: {fileID: 5871514285537652652}
   interactPrompt: {fileID: 9015373819495500866}
   animator: {fileID: 6729013888362589665}
+  characterOverrides:
+  - {fileID: 22100000, guid: 5859df13d5b7a4940be5ea17ed81e1fc, type: 2}
+  - {fileID: 22100000, guid: 39292bc68d237124894e856e04a00472, type: 2}
 --- !u!1 &5771387726713147498
 GameObject:
   m_ObjectHideFlags: 0

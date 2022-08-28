@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 37710e7df5afd7d479c2939de49ef4d4
+guid: 567f0a2f86d154e4c953c41237c9b634
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -128,13 +128,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player_detective_leave_0
+      name: player_anarchist_idle_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 128
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,20 +142,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 883b158bbc0dc77419b0583e450a49b3
-      internalID: -192824438
+      spriteID: 3024496f06db07d40acc0443ceae7c6f
+      internalID: -1961784173
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_detective_leave_1
+      name: player_anarchist_idle_1
       rect:
         serializedVersion: 2
-        x: 128
+        x: 48
         y: 0
-        width: 128
-        height: 128
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,20 +163,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ce38e8234bee4349a6cc6adc2b2b4e1
-      internalID: -83207722
+      spriteID: d0cb9a7ece3e16b449645cd8c9260949
+      internalID: -951024627
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_detective_leave_2
+      name: player_anarchist_idle_2
       rect:
         serializedVersion: 2
-        x: 256
+        x: 96
         y: 0
-        width: 128
-        height: 128
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,20 +184,125 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd7e1617ba384e447bd3f912f50fb1c2
-      internalID: 1015248700
+      spriteID: 0d835ee6d14e3a149985237db2293524
+      internalID: 412192859
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_detective_leave_3
+      name: player_anarchist_idle_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 133a62f588af20845afb22eeb4f584d1
+      internalID: -2004255345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_anarchist_idle_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d0ca1ebfeb86a64d80d9504c8850b38
+      internalID: 1249985257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_anarchist_idle_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e6181b25a99ecd45bd2d89d41f02d33
+      internalID: -741755945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_anarchist_idle_6
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbec6fca3b80a27428bf1b47f5181df0
+      internalID: 107669913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_anarchist_idle_7
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0ed61cc1820aaa46b1f7f0ca2a898f1
+      internalID: -329368205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_anarchist_idle_8
       rect:
         serializedVersion: 2
         x: 384
         y: 0
-        width: 128
-        height: 128
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,20 +310,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8405d3889c0561d44b2ec68af40797a3
-      internalID: 1923407818
+      spriteID: 2673750b651b2494a875a42568ec6c82
+      internalID: 750993208
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_detective_leave_4
+      name: player_anarchist_idle_9
       rect:
         serializedVersion: 2
-        x: 512
+        x: 432
         y: 0
-        width: 128
-        height: 128
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,20 +331,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4363a612b5f021947998d07e07e9e2f6
-      internalID: 1180344548
+      spriteID: 4acd470e4e71d8a4baec265e25ef5911
+      internalID: 1675474509
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_detective_leave_5
+      name: player_anarchist_idle_10
       rect:
         serializedVersion: 2
-        x: 640
+        x: 480
         y: 0
-        width: 128
-        height: 128
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -247,20 +352,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 895a2d3e130b68d47aa2a71de6764c8d
-      internalID: 984588484
+      spriteID: 7e63cae33c4f6f647ba4ccc2412e0c30
+      internalID: 1608661239
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_detective_leave_6
+      name: player_anarchist_idle_11
       rect:
         serializedVersion: 2
-        x: 768
+        x: 528
         y: 0
-        width: 128
-        height: 128
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -268,29 +373,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f0ee85da032128449886dc37a2c62a5
-      internalID: -1127360376
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: player_detective_leave_7
-      rect:
-        serializedVersion: 2
-        x: 896
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9156933c786eac342a429bbc2dec256b
-      internalID: -1907456694
+      spriteID: 7d20d69938ba1bb4daa5d4ad34e24060
+      internalID: -1499082782
       vertices: []
       indices: 
       edges: []
@@ -306,14 +390,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      player_detective_leave_5: 984588484
-      player_detective_leave_2: 1015248700
-      player_detective_leave_0: -192824438
-      player_detective_leave_6: -1127360376
-      player_detective_leave_1: -83207722
-      player_detective_leave_3: 1923407818
-      player_detective_leave_7: -1907456694
-      player_detective_leave_4: 1180344548
+      player_anarchist_idle_3: -2004255345
+      player_anarchist_idle_8: 750993208
+      player_anarchist_idle_11: -1499082782
+      player_anarchist_idle_1: -951024627
+      player_anarchist_idle_7: -329368205
+      player_anarchist_idle_9: 1675474509
+      player_anarchist_idle_4: 1249985257
+      player_anarchist_idle_0: -1961784173
+      player_anarchist_idle_2: 412192859
+      player_anarchist_idle_6: 107669913
+      player_anarchist_idle_5: -741755945
+      player_anarchist_idle_10: 1608661239
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -12,6 +12,8 @@ public class PlayerHandler : MonoBehaviour
     [SerializeField] private MovementHandler move;
     [SerializeField] private GameObject interactPrompt;
     [SerializeField] private Animator animator;
+    [SerializeField] private AnimatorOverrideController[] characterOverrides;
+    int characterIndex = 0;
 
     private bool grounded, acting;
     bool inputsDisabled;
@@ -23,6 +25,7 @@ public class PlayerHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator.runtimeAnimatorController = characterOverrides[characterIndex];
         interactPrompt.SetActive(false);
     }
 
@@ -50,28 +53,40 @@ public class PlayerHandler : MonoBehaviour
             animator.SetBool("moving", false);
         }
 
+        //Character Swap
+        if (InputHandler.Instance.swap.pressed && !acting && InputHandler.Instance.swapDir != 0) {
+            characterIndex = (characterIndex + (int)InputHandler.Instance.swapDir) % characterOverrides.Length;
+            if (characterIndex < 0)
+                characterIndex += characterOverrides.Length;
+            animator.runtimeAnimatorController = characterOverrides[characterIndex];
+            VFXHandler.Instance.PlayOneShotParticle((VFXHandler.ParticleType)characterIndex, transform.position, facing);
+        }
 
+        //Jumping
         if (InputHandler.Instance.jump.pressed && !acting && grounded) {
             jump.StartJump();
             animator.SetBool("grounded", false);
             animator.SetTrigger("jump");
         }
 
+        //Special
         if (InputHandler.Instance.special.pressed && !acting) {
             animator.SetTrigger("special");
             StartAction();
         }
 
+        //Attacking
         if (InputHandler.Instance.attack.pressed && !acting) {
             animator.SetTrigger("attack");
             StartAction();
         }
 
+        //Reloading
         if (InputHandler.Instance.reload.pressed && !acting && grounded) {
             animator.SetTrigger("reload");
         }
 
-
+        //Interacting
         if (InputHandler.Instance.interact.pressed && possibleInteractions.Count > 0) {
             possibleInteractions[0].Invoke();
             DeregisterInteraction(possibleInteractions[0]);

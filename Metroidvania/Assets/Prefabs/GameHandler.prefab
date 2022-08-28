@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -6045782475128908280}
   - component: {fileID: 1558390760830552041}
   - component: {fileID: 6214754255293481902}
+  - component: {fileID: 1082638801114391034}
   m_Layer: 0
   m_Name: GameHandler
   m_TagString: Untagged
@@ -266,3 +267,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6639392fff902434b852c6e9ad37688e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1082638801114391034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8153788501312524320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 386445d90b195934e8ac7393e97aacb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oneShotProjectiles:
+  - {fileID: 7400000, guid: f0c19bdf540e89e479bca5d9e8df5508, type: 2}
+  genericOneShotPrefab: {fileID: 4817510584874494021, guid: cc424f0b5b0938a4fa5028e76763bf9a, type: 3}

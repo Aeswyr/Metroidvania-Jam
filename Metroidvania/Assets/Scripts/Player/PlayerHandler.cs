@@ -107,6 +107,8 @@ public class PlayerHandler : MonoBehaviour
             dist = 3.5f;
         dist *= facing;
         VFXHandler.Instance.PlayOneShotParticle(VFXHandler.ParticleType.Muzzleflash_1, transform.position + new Vector3(dist, 1f, 0), facing);
+        
+        CombatHandler.Instance.PlayOneShotParticle(CombatHandler.ProjectileType.Bullet, transform.position + new Vector3(dist, 1f, 0), facing, facing * 125 * Vector2.right);
     }
 
     private void FireSpecial() {
@@ -116,6 +118,8 @@ public class PlayerHandler : MonoBehaviour
         dist *= facing;
         VFXHandler.Instance.PlayOneShotParticle(VFXHandler.ParticleType.Muzzleflash_1, transform.position + new Vector3(dist, 1f, 0), facing);
         VFXHandler.Instance.PlayOneShotParticle(VFXHandler.ParticleType.Detective_Special, transform.position + new Vector3(facing, 1f, 0), facing);
+
+        CombatHandler.Instance.PlayOneShotParticle(CombatHandler.ProjectileType.Bullet, transform.position + new Vector3(dist, 1f, 0), facing, facing * 125 * Vector2.right);
     }
 
     private void FireReload() {

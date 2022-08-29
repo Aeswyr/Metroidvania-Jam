@@ -16,11 +16,13 @@ public class WallSlideHandler : MonoBehaviour
     private float timeStamp = -100;
     private float slidingTime;
     private bool wasSliding;
+    private float gravityScale;
     
     void Start()
     {
         slidingTime = slidingCurve[slidingCurve.length - 1].time;
         wasSliding = false;
+        gravityScale = rbody.gravityScale;
     }
 
     void FixedUpdate()
@@ -28,14 +30,21 @@ public class WallSlideHandler : MonoBehaviour
         if (IsWallSliding())
         {
             if (!wasSliding)
+            {
                 timeStamp = Time.time;
-            rbody.velocity = new Vector2(0, velocityScalar * slidingCurve.Evaluate(Mathf.Min(Time.time - timeStamp, slidingTime)));
+                rbody.gravityScale = 0f;
+            }
+            rbody.velocity = new Vector2(0, -velocityScalar * slidingCurve.Evaluate(Mathf.Min(Time.time - timeStamp, slidingTime)));
             if (rbody.velocity.y < -terminalVelocity)
                 rbody.velocity = new Vector2(rbody.velocity.x, -terminalVelocity);
             wasSliding = true;
         }
         else
+        {
+            if (wasSliding)
+                rbody.gravityScale = gravityScale;
             wasSliding = false;
+        }
     }
 
     public bool IsWallSliding()

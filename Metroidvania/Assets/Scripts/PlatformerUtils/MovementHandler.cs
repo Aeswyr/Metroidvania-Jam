@@ -13,7 +13,8 @@ public class MovementHandler : MonoBehaviour
     private float timestamp;
     private float dir;
     private float decelSpeed;
-    bool moving = false;
+    bool moving = false, cleanupSpeed = false;
+
     // Update is called once per frame
 
 
@@ -32,10 +33,15 @@ public class MovementHandler : MonoBehaviour
         } else {
             if (moving)
                 rbody.velocity = new Vector2(speed * dir, rbody.velocity.y);
+            else if (cleanupSpeed) {
+                cleanupSpeed = false;
+                rbody.velocity = new Vector2(0, rbody.velocity.y);
+            }
         }
     }
 
     public void StartDeceleration() {
+        cleanupSpeed = true;
         moving = false;
         timestamp = Time.time + decelerationTime;
         decelSpeed = speed;
@@ -54,6 +60,7 @@ public class MovementHandler : MonoBehaviour
     }
 
     public void ResetMovement() {
+        cleanupSpeed = false;
         moving = false;
         timestamp = 0;
         decelSpeed = 0;

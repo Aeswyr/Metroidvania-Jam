@@ -59,9 +59,10 @@ public class PlayerHandler : MonoBehaviour
 
         //Character Swap
         if (InputHandler.Instance.swap.pressed && !acting) {
+            int prev = characterIndex;
             characterIndex = (characterIndex + 1) % characterOverrides.Length;
             animator.runtimeAnimatorController = characterOverrides[characterIndex];
-            VFXHandler.Instance.PlayOneShotParticle((VFXHandler.ParticleType)characterIndex, transform.position, facing);
+            VFXHandler.Instance.PlayOneShotParticle((VFXHandler.ParticleType)prev, transform.position, facing);
         }
 
         //Jumping

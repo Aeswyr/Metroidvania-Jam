@@ -253,7 +253,7 @@ MonoBehaviour:
   screenWipePrefab: {fileID: 4277955011393347199, guid: 78b1440ac38dd794fa3639bf8e1f8759, type: 3}
   oneShotParticles:
   - {fileID: 7400000, guid: 45691b474c6080d4e812727ad9070cca, type: 2}
-  - {fileID: 7400000, guid: 45691b474c6080d4e812727ad9070cca, type: 2}
+  - {fileID: 7400000, guid: 812466612ea84c849a084be12db99b7d, type: 2}
   - {fileID: 7400000, guid: 45691b474c6080d4e812727ad9070cca, type: 2}
   - {fileID: 7400000, guid: 45691b474c6080d4e812727ad9070cca, type: 2}
   - {fileID: 7400000, guid: 45691b474c6080d4e812727ad9070cca, type: 2}

@@ -19,6 +19,8 @@ public class PlayerHandler : MonoBehaviour
     private bool grounded, acting, wallSliding;
     bool inputsDisabled;
     private int facing = 1;
+    private float wallJumpTimer;
+    private bool forceMoveRelease;
 
     private List<UnityEvent> possibleInteractions = new List<UnityEvent>();
 
@@ -28,6 +30,28 @@ public class PlayerHandler : MonoBehaviour
     {
         animator.runtimeAnimatorController = characterOverrides[characterIndex];
         interactPrompt.SetActive(false);
+        wallJumpTimer = 0f;
+        forceMoveRelease = false;
+    }
+
+    void Update()
+    {
+        if (wallJumpTimer > 0)
+        {
+            wallJumpTimer -= Time.deltaTime;
+            if(wallJumpTimer <= 0)
+            {
+                wallJumpTimer = 0;
+            }
+        }
+        else if (wallJumpTimer < 0)
+        {
+            wallJumpTimer += Time.deltaTime;
+            if(wallJumpTimer >= 0)
+            {
+                wallJumpTimer = 0;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -39,22 +63,47 @@ public class PlayerHandler : MonoBehaviour
         bool groundedprev = grounded;
         grounded = ground.CheckGrounded();
         bool wallSlidingPrev = wallSliding;
-        wallSliding = wallSlide.IsWallSliding() && !grounded && wallSlide.enabled;
+        wallSliding = wallSlide.IsWallSliding() && !grounded && wallSlide.enabled && wallJumpTimer == 0;
+        if (wallSliding&&!wallSlidingPrev)
+            jump.ForceLanding();
         if (acting && ((grounded && !groundedprev) || (wallSliding && !wallSlidingPrev)))
             EndAction();
         animator.SetBool("grounded", grounded);
         animator.SetBool("hanging", wallSliding);
 
-        if (InputHandler.Instance.move.pressed && !acting)
-            move.StartAcceleration(InputHandler.Instance.dir);
-        else if (InputHandler.Instance.move.down && !acting) {
-            move.UpdateMovement(InputHandler.Instance.dir);
-            sprite.flipX = InputHandler.Instance.dir < 0;
-            facing = sprite.flipX ? -1 : 1;
-            animator.SetBool("moving", true);
-        } else if (InputHandler.Instance.move.released && !acting) {
-            move.StartDeceleration();
-            animator.SetBool("moving", false);
+        if (wallJumpTimer != 0)
+        {
+            if(grounded)
+            {
+                wallJumpTimer = 0;
+            }
+            else
+            {
+                if(forceMoveRelease)
+                {
+                    move.UpdateMovement(Mathf.Sign(wallJumpTimer));
+                }
+                else
+                {
+                    move.StartAcceleration(Mathf.Sign(wallJumpTimer));
+                    forceMoveRelease = true;
+                }
+            }
+        }
+        else
+        {
+            if (InputHandler.Instance.move.pressed && !acting)
+                move.StartAcceleration(InputHandler.Instance.dir);
+            else if (InputHandler.Instance.move.down && !acting) {
+                move.UpdateMovement(InputHandler.Instance.dir);
+                sprite.flipX = InputHandler.Instance.dir < 0;
+                facing = sprite.flipX ? -1 : 1;
+                animator.SetBool("moving", true);
+            } else if ((InputHandler.Instance.move.released | (!InputHandler.Instance.move.released && forceMoveRelease)) && !acting) {
+                forceMoveRelease = false;
+                move.StartDeceleration();
+                animator.SetBool("moving", false);
+            }
         }
 
         //Character Swap
@@ -66,10 +115,23 @@ public class PlayerHandler : MonoBehaviour
         }
 
         //Jumping
-        if (InputHandler.Instance.jump.pressed && !acting && grounded) {
-            jump.StartJump();
-            animator.SetBool("grounded", false);
-            animator.SetTrigger("jump");
+        if (InputHandler.Instance.jump.pressed && !acting) {
+            if (grounded)
+            {
+                jump.StartJump();
+                animator.SetBool("grounded", false);
+                animator.SetTrigger("jump");
+            }
+            else if (wallSliding)
+            {
+                wallJumpTimer = -.33f * facing;
+                facing *= -1;
+                sprite.flipX = facing < 0;
+                animator.SetBool("moving", true);
+                jump.StartJump();
+                animator.SetTrigger("jump");
+            }
+            
         }
 
         //Special

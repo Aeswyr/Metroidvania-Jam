@@ -14,6 +14,7 @@ public class MovementHandler : MonoBehaviour
     private float dir;
     private float decelSpeed;
     bool moving = false;
+
     // Update is called once per frame
 
 

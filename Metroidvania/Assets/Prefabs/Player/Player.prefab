@@ -63,6 +63,7 @@ GameObject:
   - component: {fileID: 2622089553801143735}
   - component: {fileID: 5871514285537652652}
   - component: {fileID: 4427129322485129353}
+  - component: {fileID: 8197715532677433472}
   - component: {fileID: 6880984631777782886}
   m_Layer: 0
   m_Name: Player
@@ -195,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rbody: {fileID: 690461484880155008}
-  velocityScalar: 20
+  velocityScalar: 24
   terminalVelocity: 24
   risingCurve:
     serializedVersion: 2
@@ -325,6 +326,50 @@ MonoBehaviour:
   floorDetectMask:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &8197715532677433472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3406059160412907519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 102b173691dcb8d4d941ec19185a5a93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rbody: {fileID: 690461484880155008}
+  wallDetectDistance: 0.05
+  bodySideOffset: {x: 1, y: 0}
+  wallDetectMask:
+    serializedVersion: 2
+    m_Bits: 128
+  velocityScalar: 0
+  terminalVelocity: 0
+  slidingCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 10
+      value: 1
+      inSlope: 0.37035978
+      outSlope: 0.37035978
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.5608716
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &6880984631777782886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,6 +387,7 @@ MonoBehaviour:
   ground: {fileID: 4427129322485129353}
   jump: {fileID: 2622089553801143735}
   move: {fileID: 5871514285537652652}
+  wallSlide: {fileID: 8197715532677433472}
   interactPrompt: {fileID: 9015373819495500866}
   animator: {fileID: 6729013888362589665}
   characterOverrides:

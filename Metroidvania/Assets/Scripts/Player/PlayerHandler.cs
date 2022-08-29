@@ -10,12 +10,13 @@ public class PlayerHandler : MonoBehaviour
     [SerializeField] private GroundedCheck ground;
     [SerializeField] private JumpHandler jump;
     [SerializeField] private MovementHandler move;
+    [SerializeField] private WallSlideHandler wallSlide;
     [SerializeField] private GameObject interactPrompt;
     [SerializeField] private Animator animator;
     [SerializeField] private AnimatorOverrideController[] characterOverrides;
     int characterIndex = 0;
 
-    private bool grounded, acting;
+    private bool grounded, acting, wallSliding;
     bool inputsDisabled;
     private int facing = 1;
 
@@ -37,9 +38,12 @@ public class PlayerHandler : MonoBehaviour
 
         bool groundedprev = grounded;
         grounded = ground.CheckGrounded();
-        if (acting && grounded && !groundedprev)
+        bool wallSlidingPrev = wallSliding;
+        wallSliding = wallSlide.IsWallSliding() && !grounded && wallSlide.enabled;
+        if (acting && ((grounded && !groundedprev) || (wallSliding && !wallSlidingPrev)))
             EndAction();
         animator.SetBool("grounded", grounded);
+        animator.SetBool("hanging", wallSliding);
 
         if (InputHandler.Instance.move.pressed && !acting)
             move.StartAcceleration(InputHandler.Instance.dir);

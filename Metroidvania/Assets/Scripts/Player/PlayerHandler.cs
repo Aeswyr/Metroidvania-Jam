@@ -202,8 +202,10 @@ public class PlayerHandler : MonoBehaviour
             move.StartDeceleration();
         animator.SetBool("moving", false);
         acting = true;
-        sprite.flipX = InputHandler.Instance.dir < 0;
-        facing = sprite.flipX ? -1 : 1;
+        if (InputHandler.Instance.dir != 0) {
+            sprite.flipX = InputHandler.Instance.dir < 0;
+            facing = sprite.flipX ? -1 : 1;
+        }
     }
 
     private void EndAction() {

@@ -143,12 +143,14 @@ public class PlayerHandler : MonoBehaviour
         if (InputHandler.Instance.jump.pressed && !acting) {
             if (grounded || (jumpGrace && jumpGraceCounter > 0))
             {
+                jumpGrace = false;
                 jump.StartJump();
                 animator.SetBool("grounded", false);
                 animator.SetTrigger("jump");
             }
             else if ((wallSliding || (wallGrace && jumpGraceCounter > 0)) && wallJumpTimer == 0)
             {
+                wallGrace = false;
                 facing = wallFacing;
                 wallJumpTimer = wallJumpDelay * facing;
                 sprite.flipX = facing < 0;

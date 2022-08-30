@@ -162,15 +162,15 @@ public class PlayerHandler : MonoBehaviour
         }
 
         //Special
-        if (InputHandler.Instance.special.pressed && !acting) {
-            animator.SetTrigger("special");
+        if (InputHandler.Instance.special.pressed && !acting && !wallSliding) {
             StartAction();
+            animator.SetTrigger("special");
         }
 
         //Attacking
-        if (InputHandler.Instance.attack.pressed && !acting) {
-            animator.SetTrigger("attack");
+        if (InputHandler.Instance.attack.pressed && !acting && !wallSliding) {
             StartAction();
+            animator.SetTrigger("attack");
         }
 
         //Reloading
@@ -202,6 +202,8 @@ public class PlayerHandler : MonoBehaviour
             move.StartDeceleration();
         animator.SetBool("moving", false);
         acting = true;
+        sprite.flipX = InputHandler.Instance.dir < 0;
+        facing = sprite.flipX ? -1 : 1;
     }
 
     private void EndAction() {

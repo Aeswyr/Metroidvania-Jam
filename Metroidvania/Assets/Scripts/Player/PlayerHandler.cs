@@ -14,11 +14,17 @@ public class PlayerHandler : MonoBehaviour
     [SerializeField] private GameObject interactPrompt;
     [SerializeField] private Animator animator;
     [SerializeField] private AnimatorOverrideController[] characterOverrides;
-    int characterIndex = 0;
 
+    [Header("Data")]
+    [SerializeField] private float wallJumpDelay;
+    [SerializeField] private int jumpGraceFrames;
+    int characterIndex = 0;
+    private int jumpGraceCounter;
+    private bool wallGrace, jumpGrace;
     private bool grounded, acting, wallSliding;
     bool inputsDisabled;
     private int facing = 1;
+    private int wallFacing = 0;
     private float wallJumpTimer;
     private bool forceMoveRelease;
 
@@ -57,6 +63,8 @@ public class PlayerHandler : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (jumpGraceCounter > 0)
+            jumpGraceCounter--;
         if (inputsDisabled)
             return;
 
@@ -64,6 +72,21 @@ public class PlayerHandler : MonoBehaviour
         grounded = ground.CheckGrounded();
         bool wallSlidingPrev = wallSliding;
         wallSliding = wallSlide.IsWallSliding() && !grounded && wallSlide.enabled && wallJumpTimer == 0;
+
+        if (grounded || wallSliding)
+            jumpGraceCounter = jumpGraceFrames;
+
+        if (grounded) {
+            jumpGrace = true;
+            wallGrace = false;
+        }
+
+        if (wallSliding) {
+            wallGrace = true;
+            jumpGrace = false;
+            wallFacing = facing * -1;
+        }
+
         if (wallSliding&&!wallSlidingPrev)
             jump.ForceLanding();
         if (acting && ((grounded && !groundedprev) || (wallSliding && !wallSlidingPrev)))
@@ -96,8 +119,10 @@ public class PlayerHandler : MonoBehaviour
                 move.StartAcceleration(InputHandler.Instance.dir);
             else if (InputHandler.Instance.move.down && !acting) {
                 move.UpdateMovement(InputHandler.Instance.dir);
-                sprite.flipX = InputHandler.Instance.dir < 0;
-                facing = sprite.flipX ? -1 : 1;
+                if (wallJumpTimer == 0) {
+                    sprite.flipX = InputHandler.Instance.dir < 0;
+                    facing = sprite.flipX ? -1 : 1;
+                }
                 animator.SetBool("moving", true);
             } else if ((InputHandler.Instance.move.released | (!InputHandler.Instance.move.released && forceMoveRelease)) && !acting) {
                 forceMoveRelease = false;
@@ -116,18 +141,18 @@ public class PlayerHandler : MonoBehaviour
 
         //Jumping
         if (InputHandler.Instance.jump.pressed && !acting) {
-            if (grounded)
+            if (grounded || (jumpGrace && jumpGraceCounter > 0))
             {
                 jump.StartJump();
                 animator.SetBool("grounded", false);
                 animator.SetTrigger("jump");
             }
-            else if (wallSliding)
+            else if ((wallSliding || (wallGrace && jumpGraceCounter > 0)) && wallJumpTimer == 0)
             {
-                wallJumpTimer = -.33f * facing;
-                facing *= -1;
+                facing = wallFacing;
+                wallJumpTimer = wallJumpDelay * facing;
                 sprite.flipX = facing < 0;
-                animator.SetBool("moving", true);
+                animator.SetBool("hanging", false);
                 jump.StartJump();
                 animator.SetTrigger("jump");
             }

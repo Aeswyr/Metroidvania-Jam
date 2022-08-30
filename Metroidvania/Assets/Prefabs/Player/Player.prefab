@@ -393,6 +393,8 @@ MonoBehaviour:
   characterOverrides:
   - {fileID: 22100000, guid: 5859df13d5b7a4940be5ea17ed81e1fc, type: 2}
   - {fileID: 22100000, guid: 39292bc68d237124894e856e04a00472, type: 2}
+  wallJumpDelay: 0.2
+  jumpGraceFrames: 5
 --- !u!1 &5771387726713147498
 GameObject:
   m_ObjectHideFlags: 0

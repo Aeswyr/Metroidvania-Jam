@@ -47,6 +47,9 @@ TagManager:
   - name: World
     uniqueID: 1804324895
     locked: 0
+  - name: Midground
+    uniqueID: 2865674883
+    locked: 0
   - name: Entity
     uniqueID: 3302102235
     locked: 0

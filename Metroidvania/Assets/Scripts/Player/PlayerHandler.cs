@@ -287,7 +287,8 @@ public class PlayerHandler : MonoBehaviour
         dist *= facing;
         VFXHandler.Instance.PlayOneShotParticle(VFXHandler.ParticleType.Muzzleflash_1, transform.position + new Vector3(dist, 1f, 0), facing);
         
-        CombatHandler.Instance.PlayOneShotProjectile(CombatHandler.ProjectileType.Bullet, transform.position + new Vector3(dist, 1f, 0), facing, facing * 125 * Vector2.right, isPlayerOwned: true);
+        CombatHandler.Instance.PlayOneShotProjectile(CombatHandler.ProjectileType.Bullet, transform.position + new Vector3(dist, 1f, 0),
+        facing, facing * 125 * Vector2.right, isPlayerOwned: true, destroyOnImpact: true);
     }
 
     private void DetectiveSpecial() {
@@ -298,7 +299,8 @@ public class PlayerHandler : MonoBehaviour
         VFXHandler.Instance.PlayOneShotParticle(VFXHandler.ParticleType.Muzzleflash_1, transform.position + new Vector3(dist, 1f, 0), facing);
         VFXHandler.Instance.PlayOneShotParticle(VFXHandler.ParticleType.Detective_Special, transform.position + new Vector3(facing, 1f, 0), facing);
 
-        CombatHandler.Instance.PlayOneShotProjectile(CombatHandler.ProjectileType.Bullet, transform.position + new Vector3(dist, 1f, 0), facing, facing * 125 * Vector2.right, isPlayerOwned: true);
+        CombatHandler.Instance.PlayOneShotProjectile(CombatHandler.ProjectileType.Bullet, transform.position + new Vector3(dist, 1f, 0),
+        facing, facing * 125 * Vector2.right, isPlayerOwned: true, destroyOnImpact: true);
     }
 
     private void DetectiveReload() {
@@ -309,6 +311,6 @@ public class PlayerHandler : MonoBehaviour
         float dist = 3f;
         dist *= facing;
         CombatHandler.Instance.PlayOneShotProjectile(CombatHandler.ProjectileType.Bullet, transform.position + new Vector3(dist, 0, 0)
-        , facing, size: new Vector2(4, 4), parent: transform, duration: 0.125f, isPlayerOwned: true);
+        , facing, size: new Vector2(4, 4), parent: transform, duration: 0.125f, isPlayerOwned: true, destroyOnImpact: true);
     }
 }

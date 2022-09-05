@@ -5,7 +5,7 @@ public class CombatHandler : Singleton<CombatHandler> {
     [SerializeField] private GameObject genericOneShotPrefab;
 
         public void PlayOneShotProjectile(ProjectileType type, Vector3 position, int facing = 1, Vector2 velocity = default, Collider2D owner = null,
-        Vector2 size = default, Transform parent = null, float duration = default, bool isPlayerOwned = false) {
+        Vector2 size = default, Transform parent = null, float duration = default, bool isPlayerOwned = false, bool destroyOnImpact = false) {
             GameObject particle = Instantiate(genericOneShotPrefab, position, Quaternion.identity);
             particle.transform.localScale = new Vector3(facing, 1, 1);
 
@@ -20,14 +20,17 @@ public class CombatHandler : Singleton<CombatHandler> {
             if (parent != null)
                 particle.transform.SetParent(parent);
 
-            if (velocity != default)
-                particle.GetComponent<Rigidbody2D>().velocity = velocity;
-
             if (size != default)
                 particle.GetComponent<BoxCollider2D>().size = size;
 
+            if (velocity != default)
+                particle.AddComponent<Rigidbody2D>().velocity = velocity;
+
             if (duration != default)
-                particle.GetComponent<DestroyAfterDelay>().lifetime = duration;
+                particle.AddComponent<DestroyAfterDelay>().lifetime = duration;
+
+            if (destroyOnImpact)
+                particle.AddComponent<DestroyOnImpact>();
 
         }
 

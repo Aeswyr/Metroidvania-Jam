@@ -11,11 +11,8 @@ GameObject:
   - component: {fileID: 7585028747101180508}
   - component: {fileID: -5591806592388185013}
   - component: {fileID: -5621907945221720429}
-  - component: {fileID: -7336293328180018994}
   - component: {fileID: 7205120112570813255}
   - component: {fileID: 5173354053472336975}
-  - component: {fileID: 2941653624554779325}
-  - component: {fileID: 190831909842338012}
   m_Layer: 8
   m_Name: OneShotProjectile
   m_TagString: Untagged
@@ -110,27 +107,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!50 &-7336293328180018994
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4817510584874494021}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 4
 --- !u!61 &7205120112570813255
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -171,28 +147,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particles: 08000000
   col: {fileID: 7205120112570813255}
---- !u!114 &2941653624554779325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4817510584874494021}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7dea5ec605fb4284d9f30a8e4b137493, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &190831909842338012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4817510584874494021}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36cc659e350b7b34bb37a540215b099c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifetime: 60

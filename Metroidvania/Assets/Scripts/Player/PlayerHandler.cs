@@ -210,6 +210,8 @@ public class PlayerHandler : MonoBehaviour
 
     private void EndAction() {
         acting = false;
+        if (!InputHandler.Instance.move.down)
+            move.StartDeceleration();
     }
 
     private void FireAttack() {
@@ -219,6 +221,7 @@ public class PlayerHandler : MonoBehaviour
                 DetectiveAttack();
                 break;
             case 1:
+                AnarchistAttack();
                 break;
             case 2:
                 break;
@@ -284,7 +287,7 @@ public class PlayerHandler : MonoBehaviour
         dist *= facing;
         VFXHandler.Instance.PlayOneShotParticle(VFXHandler.ParticleType.Muzzleflash_1, transform.position + new Vector3(dist, 1f, 0), facing);
         
-        CombatHandler.Instance.PlayOneShotParticle(CombatHandler.ProjectileType.Bullet, transform.position + new Vector3(dist, 1f, 0), facing, facing * 125 * Vector2.right);
+        CombatHandler.Instance.PlayOneShotProjectile(CombatHandler.ProjectileType.Bullet, transform.position + new Vector3(dist, 1f, 0), facing, facing * 125 * Vector2.right, isPlayerOwned: true);
     }
 
     private void DetectiveSpecial() {
@@ -295,10 +298,17 @@ public class PlayerHandler : MonoBehaviour
         VFXHandler.Instance.PlayOneShotParticle(VFXHandler.ParticleType.Muzzleflash_1, transform.position + new Vector3(dist, 1f, 0), facing);
         VFXHandler.Instance.PlayOneShotParticle(VFXHandler.ParticleType.Detective_Special, transform.position + new Vector3(facing, 1f, 0), facing);
 
-        CombatHandler.Instance.PlayOneShotParticle(CombatHandler.ProjectileType.Bullet, transform.position + new Vector3(dist, 1f, 0), facing, facing * 125 * Vector2.right);
+        CombatHandler.Instance.PlayOneShotProjectile(CombatHandler.ProjectileType.Bullet, transform.position + new Vector3(dist, 1f, 0), facing, facing * 125 * Vector2.right, isPlayerOwned: true);
     }
 
     private void DetectiveReload() {
         
+    }
+
+    private void AnarchistAttack() {
+        float dist = 3f;
+        dist *= facing;
+        CombatHandler.Instance.PlayOneShotProjectile(CombatHandler.ProjectileType.Bullet, transform.position + new Vector3(dist, 0, 0)
+        , facing, size: new Vector2(4, 4), parent: transform, duration: 0.125f, isPlayerOwned: true);
     }
 }

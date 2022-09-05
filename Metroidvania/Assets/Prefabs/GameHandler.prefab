@@ -259,6 +259,8 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 45691b474c6080d4e812727ad9070cca, type: 2}
   - {fileID: 7400000, guid: c4cc221246234a040a5194f810445347, type: 2}
   - {fileID: 7400000, guid: be97f6566a488ff48bce4ef83b4eaa73, type: 2}
+  - {fileID: 7400000, guid: 40d6aa0a25f0f7849ad767f1c8edde13, type: 2}
+  - {fileID: 7400000, guid: 57d661049f1ed96448c16035f9642fa1, type: 2}
   genericOneShotPrefab: {fileID: 1146458541564124198, guid: af5de4ce2a5e70046804c26ed1247a4b, type: 3}
 --- !u!114 &6214754255293481902
 MonoBehaviour:

@@ -39,6 +39,7 @@ public class VFXHandler : Singleton<VFXHandler>
         }
 
         public enum ParticleType {
-            Detective_Leave, Anarchist_Leave, Boxer_Leave, Mobster_Leave, Antiquarian_Leave, Muzzleflash_1, Detective_Special
+            Detective_Leave, Anarchist_Leave, Boxer_Leave, Mobster_Leave, Antiquarian_Leave, Muzzleflash_1, Detective_Special,
+            Bloodspark0, Hitspark0,
         }
 }

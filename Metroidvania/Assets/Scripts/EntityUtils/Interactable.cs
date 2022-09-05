@@ -8,7 +8,6 @@ public class Interactable : MonoBehaviour
     [SerializeField] private bool requiresConfirm;
     [SerializeField] private UnityEvent action;
     private void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("bruh");
         if (!requiresConfirm)
             action.Invoke();
         else

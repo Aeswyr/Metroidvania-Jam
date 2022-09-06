@@ -16,6 +16,7 @@ public class JumpHandler : MonoBehaviour
     private bool jumping, starting;
     private AnimationCurve curve;
     private float risingTime, fallingTime, maxTime;
+    private float pauseTime;
 
     void Start() {
         risingTime = risingCurve[risingCurve.length - 1].time;
@@ -24,6 +25,13 @@ public class JumpHandler : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (pauseTime > 0) {
+            pauseTime -= Time.fixedDeltaTime;
+            if (pauseTime <= 0)
+                rbody.gravityScale = 20f;
+            else
+                return;
+        }
         if (starting && (InputHandler.Instance.jump.released || Time.time - timeStamp > risingTime))
             EndJump();
         if (Time.time - timeStamp <= maxTime)     
@@ -50,6 +58,15 @@ public class JumpHandler : MonoBehaviour
     public void ForceLanding() {
         starting = false;
         timeStamp = -100;
+    }
+
+    public void Pause(float amt) {
+        if (pauseTime > amt)
+            return;
+        pauseTime = amt;
+        rbody.velocity = new Vector2(rbody.velocity.x, 0);
+        timeStamp += amt - pauseTime;
+        rbody.gravityScale = 0;
     }
 
 }

@@ -311,6 +311,6 @@ public class PlayerHandler : MonoBehaviour
         float dist = 3f;
         dist *= facing;
         CombatHandler.Instance.PlayOneShotProjectile(CombatHandler.ProjectileType.Bullet, transform.position + new Vector3(dist, 0, 0)
-        , facing, size: new Vector2(4, 4), parent: transform, duration: 0.125f, isPlayerOwned: true, destroyOnImpact: true);
+        , facing, size: new Vector2(4, 4), parent: transform, duration: 0.125f, isPlayerOwned: true, destroyOnImpact: true, shouldHitpause: true);
     }
 }

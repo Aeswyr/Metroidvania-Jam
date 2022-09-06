@@ -4,8 +4,9 @@ public class CombatHandler : Singleton<CombatHandler> {
     [SerializeField] private AnimationClip[] oneShotProjectiles;
     [SerializeField] private GameObject genericOneShotPrefab;
 
-        public void PlayOneShotProjectile(ProjectileType type, Vector3 position, int facing = 1, Vector2 velocity = default, Collider2D owner = null,
-        Vector2 size = default, Transform parent = null, float duration = default, bool isPlayerOwned = false, bool destroyOnImpact = false) {
+        public void PlayOneShotProjectile(ProjectileType type, Vector3 position, int facing = 1, Vector2 velocity = default,
+        Vector2 size = default, Transform parent = null, float duration = default, bool isPlayerOwned = false, bool destroyOnImpact = false,
+        bool shouldHitpause = false) {
             GameObject particle = Instantiate(genericOneShotPrefab, position, Quaternion.identity);
             particle.transform.localScale = new Vector3(facing, 1, 1);
 
@@ -17,8 +18,12 @@ public class CombatHandler : Singleton<CombatHandler> {
             if (isPlayerOwned)
                 particle.layer = LayerMask.NameToLayer("PlayerHitbox");
 
-            if (parent != null)
+            if (parent != null) {
                 particle.transform.SetParent(parent);
+                if (shouldHitpause)
+                    particle.AddComponent<HitpauseOnImpact>().Init(parent.GetComponent<AnimatorExtender>(), parent.GetComponent<MovementHandler>(), parent.GetComponent<JumpHandler>());
+
+            }
 
             if (size != default)
                 particle.GetComponent<BoxCollider2D>().size = size;

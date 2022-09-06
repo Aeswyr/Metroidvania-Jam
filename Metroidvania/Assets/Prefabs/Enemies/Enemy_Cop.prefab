@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 8268153808074456446}
   - component: {fileID: 6968610507066845480}
   - component: {fileID: 2412643250344118175}
+  - component: {fileID: 6433451243304991490}
   m_Layer: 0
   m_Name: Enemy_Cop
   m_TagString: Untagged
@@ -276,3 +277,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 5
+--- !u!114 &6433451243304991490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2359561694262968063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c198b9859ae78a40a0293e3cd89e1ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 8268153808074456446}

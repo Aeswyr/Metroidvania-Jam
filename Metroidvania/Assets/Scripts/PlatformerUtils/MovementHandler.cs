@@ -43,6 +43,7 @@ public class MovementHandler : MonoBehaviour
                 rbody.velocity = new Vector2(0, rbody.velocity.y);
             }
         }
+        
     }
 
     public void StartDeceleration() {

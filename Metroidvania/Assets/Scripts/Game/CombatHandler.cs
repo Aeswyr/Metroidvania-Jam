@@ -6,7 +6,7 @@ public class CombatHandler : Singleton<CombatHandler> {
 
         public void PlayOneShotProjectile(ProjectileType type, Vector3 position, int facing = 1, Vector2 velocity = default,
         Vector2 size = default, Transform parent = null, float duration = default, bool isPlayerOwned = false, bool destroyOnImpact = false,
-        bool shouldHitpause = false) {
+        bool shouldHitpause = false, int damage = 0) {
             GameObject particle = Instantiate(genericOneShotPrefab, position, Quaternion.identity);
             particle.transform.localScale = new Vector3(facing, 1, 1);
 
@@ -36,6 +36,9 @@ public class CombatHandler : Singleton<CombatHandler> {
 
             if (destroyOnImpact)
                 particle.AddComponent<DestroyOnImpact>();
+            
+            if (damage != 0) 
+                particle.AddComponent<DamageOnImpact>().damage = damage;;
 
         }
 

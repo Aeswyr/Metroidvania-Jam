@@ -147,6 +147,8 @@ GameObject:
   - component: {fileID: 6968610507066845480}
   - component: {fileID: 2412643250344118175}
   - component: {fileID: 6433451243304991490}
+  - component: {fileID: 4245358333841103925}
+  - component: {fileID: 1963691345431288792}
   m_Layer: 0
   m_Name: Enemy_Cop
   m_TagString: Untagged
@@ -290,3 +292,84 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8268153808074456446}
+--- !u!114 &4245358333841103925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2359561694262968063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28342f3fb379ed643aa48a005f29ea44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  rbody: {fileID: 6968610507066845480}
+  accelerationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 7.729175
+      outSlope: 7.729175
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.033940397
+    - serializedVersion: 3
+      time: 0.3
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  decelerationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.16358617
+      outSlope: -0.16358617
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.048013244
+    - serializedVersion: 3
+      time: 0.4
+      value: 0
+      inSlope: 0.18481384
+      outSlope: 0.18481384
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.08333087
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1963691345431288792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2359561694262968063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8416ff065cf7b448972fcea45302c05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 8268153808074456446}
+  sprite: {fileID: 4991741145271214834}
+  move: {fileID: 4245358333841103925}
+  fireRange: 0
+  fireRate: 0
+  paceDistance: 20
+  pacePauseTime: 3

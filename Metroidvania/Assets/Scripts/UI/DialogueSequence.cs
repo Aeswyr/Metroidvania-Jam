@@ -138,6 +138,7 @@ public class DialogueSequence : MonoBehaviour
         c.a = 1;
         fadeResponseText.color = c;
         */
+        //fadeResponseBubble.gameObject.SetActive(false);
         fadeResponseBubble.transform.localPosition = responseBubbles[responseIndex].transform.localPosition;
         floatTimeStampRes = Time.time;
         fadeResponseText.text = responseTexts[responseIndex].text;
@@ -194,7 +195,7 @@ public class DialogueSequence : MonoBehaviour
             text1.text = dialogueEvents[index].text;
         }
 
-        if (dialogueEvents[index].responses.Length == 0)
+        if (dialogueEvents[index].responses.Length > 0)
         {
             for(int i = 0; i < responseBubbles.Length; i++)
             {
@@ -210,7 +211,6 @@ public class DialogueSequence : MonoBehaviour
                 indicator.transform.localPosition = responseBubbles[0].transform.localPosition + (Vector3)indicatorOffset;
             responseIndex = 0; 
         }
-        
     }
 
     public void NextResponse()

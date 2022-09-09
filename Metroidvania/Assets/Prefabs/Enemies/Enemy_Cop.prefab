@@ -388,7 +388,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 4096
-  sightRange: 2
+  sightRange: 20
   onPlayerSpotted:
     m_PersistentCalls:
       m_Calls:

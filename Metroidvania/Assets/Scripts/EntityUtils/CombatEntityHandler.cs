@@ -7,9 +7,14 @@ public class CombatEntityHandler : MonoBehaviour
     [SerializeField] private int MaxHealth;
     private int health;
 
-    void Start()
+    void Awake()
     {
         health = MaxHealth;
+    }
+
+    void Start()
+    {
+        
     }
 
     public void Damage(int amt) {
@@ -24,5 +29,10 @@ public class CombatEntityHandler : MonoBehaviour
     {
         // TODO: death animations
         gameObject.SetActive(false);
+    }
+
+    public int GetHealth()
+    {
+        return health;
     }
 }

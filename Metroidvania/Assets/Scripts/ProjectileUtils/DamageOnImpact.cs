@@ -11,7 +11,10 @@ public class DamageOnImpact : MonoBehaviour
     {
         if (other.transform.parent != null && other.transform.parent.TryGetComponent(out entity))
         {
-            entity.Damage(damage);
+            if (Mathf.Abs(other.gameObject.layer - gameObject.layer) != 1)
+            {
+                entity.Damage(damage);
+            }
         }
     }
 }

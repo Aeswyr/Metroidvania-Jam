@@ -15,7 +15,8 @@ public class PlayFXOnImpact : MonoBehaviour
         col.Cast(Vector2.right, filter,  cols, 0, true);
 
         Vector2 point = cols[0].point;
-
+        if (point == Vector2.zero)
+            point = other.transform.position;
 
         foreach (var particle in particles) {
             VFXHandler.Instance.PlayOneShotParticle(particle, point, (int)(-1 * transform.localScale.x));

@@ -7,6 +7,7 @@ public class ChaseAndShootBehaviour : AIBehaviour
     [SerializeField] private float shootRange;
     [SerializeField] private float shootDelay;
     [SerializeField] private float windupTime;
+    [SerializeField] private float attackRecovery = 0.34f;
     [SerializeField] private float maxYOffset;
     [SerializeField] private Vector2 rightFootOffset;
     [SerializeField] private LayerMask floorMask;
@@ -17,6 +18,7 @@ public class ChaseAndShootBehaviour : AIBehaviour
     private float shootTimestamp;
     private float windupTimestamp;
     private bool windup = false;
+    
     
 
     protected override void AIAwake()
@@ -39,7 +41,7 @@ public class ChaseAndShootBehaviour : AIBehaviour
         if (!player.gameObject.activeSelf)
             return;
         float dis = player.transform.position.x - transform.position.x;
-        if (Mathf.Abs(dis) > shootRange)
+        if (Mathf.Abs(dis) > shootRange && Time.time - windupTimestamp - windupTime - attackRecovery >= 0)
         {
             RaycastHit2D ground = Physics2D.Raycast(transform.position + new Vector3((rightFootOffset.x+aheadDistance)  * Mathf.Sign(dis), rightFootOffset.y, 0), Vector2.down, floorDetectDistance, floorMask.value);
             if (ground != null)

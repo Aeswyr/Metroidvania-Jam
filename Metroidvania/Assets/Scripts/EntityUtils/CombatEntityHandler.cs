@@ -6,6 +6,13 @@ public class CombatEntityHandler : MonoBehaviour
 {
     [SerializeField] private int MaxHealth;
     private int health;
+    private bool immune = false;
+    private bool damaged = false;
+
+    private bool oldDamaged;
+
+    private int damageDelayed = 0;
+
 
     void Awake()
     {
@@ -17,12 +24,26 @@ public class CombatEntityHandler : MonoBehaviour
         
     }
 
-    public void Damage(int amt) {
-        health -= amt;
-        if (health <= 0)
+    void FixedUpdate()
+    {
+        if (oldDamaged && damaged)
         {
-            Kill();
+            damaged = false;
+            if (!immune)
+            {
+                health -= damageDelayed;
+                if (health <= 0)
+                {
+                    Kill();
+                }
+            }
         }
+        oldDamaged = damaged;
+    }
+
+    public void Damage(int amt) {
+        damaged = true;
+        damageDelayed = amt;
     }
 
     public void Kill()
@@ -34,5 +55,15 @@ public class CombatEntityHandler : MonoBehaviour
     public int GetHealth()
     {
         return health;
+    }
+
+    public bool CheckDamaged()
+    {
+        return damaged;
+    }
+
+    public void SetImmune(bool immune)
+    {
+        this.immune = immune;
     }
 }

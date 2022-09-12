@@ -151,9 +151,11 @@ GameObject:
   - component: {fileID: 1963691345431288792}
   - component: {fileID: 8801699436387992594}
   - component: {fileID: 7398813931627319133}
+  - component: {fileID: 813219424131298015}
+  - component: {fileID: 6257270016084666038}
   - component: {fileID: 1746595384732987587}
   m_Layer: 0
-  m_Name: Enemy_Cop
+  m_Name: Enemy_Riot_Cop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -217,7 +219,7 @@ SpriteRenderer:
   m_SortingLayerID: -992865061
   m_SortingLayer: 4
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: f50bfd3981a578e4a8b76ca3e9528c39, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 368ad6cdd4a43a443be4340aa81d3efb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -238,7 +240,7 @@ Animator:
   m_GameObject: {fileID: 2359561694262968063}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 0fd3682ff3f08f1499782d790600330e, type: 2}
+  m_Controller: {fileID: 22100000, guid: 08a93d3eb12a14a44ae36376d8e49363, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -416,18 +418,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 7398813931627319133}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &7398813931627319133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,7 +458,116 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 813219424131298015}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &813219424131298015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2359561694262968063}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8d5bd753a3b52c498fb76856cce1875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlMovement: 1
+  blockLength: 0.5
+  onBlockBegin:
+    m_PersistentCalls:
+      m_Calls:
       - m_Target: {fileID: 1746595384732987587}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2412643250344118175}
+        m_TargetAssemblyTypeName: CombatEntityHandler, Assembly-CSharp
+        m_MethodName: SetImmune
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onBlockEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1746595384732987587}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 6257270016084666038}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2412643250344118175}
+        m_TargetAssemblyTypeName: CombatEntityHandler, Assembly-CSharp
+        m_MethodName: SetImmune
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6257270016084666038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2359561694262968063}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a135a61d0d6e6b4d86bc602b45a35fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlMovement: 0
+  delayLength: 0.5
+  onDelay:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7398813931627319133}
         m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
         m_MethodName: set_enabled
         m_Mode: 6
@@ -493,7 +592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlMovement: 1
-  shootRange: 20
+  shootRange: 1.75
   shootDelay: 2
   windupTime: 0.7
   attackRecovery: 0.34
@@ -502,4 +601,4 @@ MonoBehaviour:
   floorMask:
     serializedVersion: 2
     m_Bits: 128
-  meleeAttack: 0
+  meleeAttack: 1

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Riot Cop
+  m_Controller: {fileID: 9100000, guid: bee364538b64c6c45910192289f5abbf, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 25a73bf39f8c3e44696cb0200c451b8f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e35634774ea074d498ae9317efc2f611, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 08af3f77875f9214988a88a5d54103ef, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4837693a21a79794f813a05beb0c4033, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 3a9e9cb690943514fb7531557388a866, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6676359b19c8cad448b56aa56685c641, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 66461090860539949b565f0a99e05846, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 66461090860539949b565f0a99e05846, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 7ff9588aa81f64f458bf3a675f78276e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 51da2f4192b0ef8419307e202d9bcf70, type: 2}

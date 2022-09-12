@@ -11,6 +11,7 @@ public class ChaseAndShootBehaviour : AIBehaviour
     [SerializeField] private float maxYOffset;
     [SerializeField] private Vector2 rightFootOffset;
     [SerializeField] private LayerMask floorMask;
+    [SerializeField] private bool meleeAttack;
 
     private float aheadDistance = 1f;
     private float floorDetectDistance = 1f;
@@ -33,7 +34,10 @@ public class ChaseAndShootBehaviour : AIBehaviour
             if (Time.time - windupTimestamp >= windupTime)
             {
                 windup = false;
-                Shoot();
+                if (meleeAttack)
+                    Melee();
+                else
+                    Shoot();
             }
             return;
         }
@@ -76,6 +80,8 @@ public class ChaseAndShootBehaviour : AIBehaviour
     private void Shoot()
     {
         float dist = 3.5f;
+        dist *= facing;
+        /*
         if (sprite.flipX)
         {
             VFXHandler.Instance.PlayOneShotParticle(VFXHandler.ParticleType.Muzzleflash_1, transform.position + new Vector3(-dist, 1f, 0), facing);
@@ -84,10 +90,20 @@ public class ChaseAndShootBehaviour : AIBehaviour
         }
         else
         {
+            */
             VFXHandler.Instance.PlayOneShotParticle(VFXHandler.ParticleType.Muzzleflash_1, transform.position + new Vector3(dist, 1f, 0), facing);
             CombatHandler.Instance.PlayOneShotProjectile(CombatHandler.ProjectileType.Bullet, transform.position + new Vector3(dist, 1f, 0),
             facing, facing * 125 * Vector2.right, destroyOnImpact: true, damage: 1);
-        }
+        //}
+        animator.SetTrigger("attack");
+    }
+
+    private void Melee()
+    {
+        float dist = 3f;
+        dist *= facing;
+        CombatHandler.Instance.PlayOneShotProjectile(CombatHandler.ProjectileType.Bullet, transform.position + new Vector3(dist, 0, 0)
+        , facing, size: new Vector2(4, 4), parent: transform, duration: 0.125f, destroyOnImpact: true, shouldHitpause: true, damage: 1);
         animator.SetTrigger("attack");
     }
 }

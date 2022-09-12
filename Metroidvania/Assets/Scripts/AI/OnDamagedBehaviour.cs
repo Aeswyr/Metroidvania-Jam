@@ -8,28 +8,29 @@ public class OnDamagedBehaviour : AIBehaviour
 {
     [SerializeField] private UnityEvent onDamaged;
     private CombatEntityHandler entity;
-    private int oldHealth;
+    //private int oldHealth;
 
     protected override void AIAwake()
     {
         entity = GetComponent<CombatEntityHandler>();
-        oldHealth = entity.GetHealth();
+        //oldHealth = entity.GetHealth();
     }
 
     void OnEnable()
     {
-        oldHealth = entity.GetHealth();
+        //oldHealth = entity.GetHealth();
     }
 
     protected override void AIUpdate()
     {
-        int health = entity.GetHealth();
-        if (health != oldHealth)
+        //int health = entity.GetHealth();
+        //if (health != oldHealth)
+        if (entity.CheckDamaged())
         {
             enabled = false;
             onDamaged.Invoke();
             return;
         }
-        oldHealth = health;
+        //oldHealth = health;
     }
 }

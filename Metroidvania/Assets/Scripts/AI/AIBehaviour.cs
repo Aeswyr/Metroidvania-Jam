@@ -11,7 +11,7 @@ public class AIBehaviour : MonoBehaviour
 
     protected Animator animator;
     protected SpriteRenderer sprite;
-    private MovementHandler move;
+    protected MovementHandler move;
     
 
     protected int facing = 1;
@@ -76,5 +76,7 @@ public class AIBehaviour : MonoBehaviour
         this.dir = dir;
         sprite.flipX = dir < 0;
         facing = sprite.flipX ? -1 : 1;
+        if (!animator.GetBool("moving"))
+            animator.SetBool("moving", true);
     }
 }

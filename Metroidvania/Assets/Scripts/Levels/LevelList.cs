@@ -12,5 +12,6 @@ public class LevelList : ScriptableObject {
 }
 
 public enum LevelType {
+    HOME,
     INNSWARD, 
 }

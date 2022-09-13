@@ -151,8 +151,8 @@ GameObject:
   - component: {fileID: 1963691345431288792}
   - component: {fileID: 8801699436387992594}
   - component: {fileID: 7398813931627319133}
+  - component: {fileID: 6742156614781572455}
   - component: {fileID: 813219424131298015}
-  - component: {fileID: 6257270016084666038}
   - component: {fileID: 1746595384732987587}
   m_Layer: 0
   m_Name: Enemy_Riot_Cop
@@ -458,17 +458,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6742156614781572455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2359561694262968063}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dc1aae8d2827c643b888f2ecfe419da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlMovement: 0
+  onDamaged:
+    m_PersistentCalls:
+      m_Calls:
       - m_Target: {fileID: 813219424131298015}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
+        m_TargetAssemblyTypeName: BlockBehaviour, Assembly-CSharp
+        m_MethodName: Block
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &813219424131298015
 MonoBehaviour:
@@ -526,18 +542,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 6257270016084666038}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 2412643250344118175}
         m_TargetAssemblyTypeName: CombatEntityHandler, Assembly-CSharp
         m_MethodName: SetImmune
@@ -549,35 +553,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &6257270016084666038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2359561694262968063}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a135a61d0d6e6b4d86bc602b45a35fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controlMovement: 0
-  delayLength: 0.5
-  onDelay:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7398813931627319133}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1746595384732987587
 MonoBehaviour:
@@ -602,3 +577,33 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   meleeAttack: 1
+  onWindup:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6742156614781572455}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onAttack:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6742156614781572455}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2

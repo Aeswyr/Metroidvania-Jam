@@ -11,14 +11,14 @@ public class BlockBehaviour : AIBehaviour
 
     private float blockTimestamp;
 
-    void OnEnable()
+    public void Block()
     {
         animator.SetBool("block", true);
         animator.SetBool("moving", false);
         move.StartDeceleration();
         onBlockBegin.Invoke();
         blockTimestamp = Time.time;
-        
+        enabled = true;
     }
 
     protected override void AIUpdate()

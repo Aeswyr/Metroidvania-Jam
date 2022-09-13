@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ChaseAndShootBehaviour : AIBehaviour
 {
@@ -12,12 +13,14 @@ public class ChaseAndShootBehaviour : AIBehaviour
     [SerializeField] private Vector2 rightFootOffset;
     [SerializeField] private LayerMask floorMask;
     [SerializeField] private bool meleeAttack;
+    [SerializeField] private UnityEvent onWindup;
+    [SerializeField] private UnityEvent onAttack;
 
     private float aheadDistance = 1f;
     private float floorDetectDistance = 1f;
     private PlayerHandler player;
-    private float shootTimestamp;
-    private float windupTimestamp;
+    private float shootTimestamp = -100;
+    private float windupTimestamp = -100;
     private bool windup = false;
     
     
@@ -38,6 +41,8 @@ public class ChaseAndShootBehaviour : AIBehaviour
                     Melee();
                 else
                     Shoot();
+                onAttack.Invoke();
+                shootTimestamp = Time.time;
             }
             return;
         }
@@ -45,7 +50,7 @@ public class ChaseAndShootBehaviour : AIBehaviour
         if (!player.gameObject.activeSelf)
             return;
         float dis = player.transform.position.x - transform.position.x;
-        if (Mathf.Abs(dis) > shootRange && Time.time - windupTimestamp - windupTime - attackRecovery >= 0)
+        if (Mathf.Abs(dis) > shootRange && Time.time - shootTimestamp - shootDelay >= 0)
         {
             RaycastHit2D ground = Physics2D.Raycast(transform.position + new Vector3((rightFootOffset.x+aheadDistance)  * Mathf.Sign(dis), rightFootOffset.y, 0), Vector2.down, floorDetectDistance, floorMask.value);
             if (ground != null)
@@ -64,7 +69,7 @@ public class ChaseAndShootBehaviour : AIBehaviour
                 else if (Time.time - shootTimestamp >= shootDelay)
                 {
                     Windup();
-                    shootTimestamp = Time.time;
+                    //shootTimestamp = Time.time;
                 }
             }
         }
@@ -75,6 +80,7 @@ public class ChaseAndShootBehaviour : AIBehaviour
         windup = true;
         windupTimestamp = Time.time;
         animator.SetTrigger("windup");
+        onWindup.Invoke();
     }
 
     private void Shoot()

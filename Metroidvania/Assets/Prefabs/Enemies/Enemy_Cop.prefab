@@ -503,3 +503,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   meleeAttack: 0
+  onWindup:
+    m_PersistentCalls:
+      m_Calls: []
+  onAttack:
+    m_PersistentCalls:
+      m_Calls: []

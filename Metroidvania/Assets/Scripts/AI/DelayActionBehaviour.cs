@@ -10,9 +10,10 @@ public class DelayActionBehaviour : AIBehaviour
 
     private float delayTimestamp;
 
-    void OnEnable()
+    public void Delay()
     {
-        delayTimestamp = Time.time;   
+        delayTimestamp = Time.time;  
+        enabled = true; 
     }
 
     protected override void AIUpdate()

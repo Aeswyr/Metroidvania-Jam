@@ -10,24 +10,24 @@ public class BlockBehaviour : AIBehaviour
     [SerializeField] private UnityEvent onBlockEnd;
 
     private float blockTimestamp;
+    private bool blocking = false;
 
     public void Block()
     {
-        animator.SetBool("block", true);
+        animator.SetTrigger("block");
         animator.SetBool("moving", false);
         move.StartDeceleration();
         onBlockBegin.Invoke();
         blockTimestamp = Time.time;
-        enabled = true;
+        blocking = true;
     }
 
     protected override void AIUpdate()
     {
-        if (Time.time - blockTimestamp >= blockLength)
+        if (blocking && Time.time - blockTimestamp >= blockLength)
         {
-            animator.SetBool("block", false);
             onBlockEnd.Invoke();
-            enabled = false;
+            blocking = false;
         }
     }
 }

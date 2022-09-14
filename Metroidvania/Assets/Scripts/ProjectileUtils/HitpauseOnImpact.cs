@@ -17,9 +17,18 @@ public class HitpauseOnImpact : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         animator.StartPause(0.1f);
-        move.Pause(0.1f);
-        jump.Pause(0.1f);
-        if (other.transform.parent != null && other.transform.parent.TryGetComponent(out AnimatorExtender anim))
-            anim.StartPause(0.1f);
+        if (move != null)
+            move.Pause(0.1f);
+        if (jump != null)
+            jump.Pause(0.1f);
+        if (other.transform.parent != null) {
+            if (other.transform.parent.TryGetComponent(out AnimatorExtender anim))
+                anim.StartPause(0.1f);
+            if (other.transform.parent.TryGetComponent(out MovementHandler mov))
+                mov.Pause(0.1f);
+            if (other.transform.parent.TryGetComponent(out JumpHandler jum))
+                jum.Pause(0.1f);
+        }
+            
     }
 }
